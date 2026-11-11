@@ -72,7 +72,7 @@ date: 2026-11-11
 仓库名建议 `blog`，设为 Public，**不要**初始化 README。
 
 ```bash
-git remote add origin https://github.com/你的用户名/blog.git
+git remote add origin https://github.com/gemozhizhi/blog.git
 git branch -M main
 git push -u origin main
 ```

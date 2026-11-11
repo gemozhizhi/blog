@@ -13,7 +13,7 @@ title: 部署流程
 
 ```bash
 cd blog
-git remote add origin https://github.com/你的用户名/blog.git
+git remote add origin https://github.com/gemozhizhi/blog.git
 git branch -M main
 git push -u origin main
 ```

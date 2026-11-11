@@ -14,7 +14,7 @@
 
 ### 用户名怎么选
 
-用户名会公开出现在 `github.com/你的用户名`，并且**永久绑定你的所有开源贡献记录**。
+用户名会公开出现在 `github.com/gemozhizhi`，并且**永久绑定你的所有开源贡献记录**。
 
 推荐和博客主题相关的：
 - `gemozhizhi` —— 与域名一致，最统一
@@ -85,7 +85,7 @@ GitHub 会实时检查用户名是否可用。
 
 ## 第六步 · 推送本地代码
 
-在终端执行（把 `你的用户名` 换成真实用户名）：
+在终端执行（用户名已确定为 `gemozhizhi`）：
 
 ```bash
 cd /Users/wangmengxuan/WorkBuddy/2026-11-10-16-42-04/blog
@@ -95,7 +95,7 @@ git config --global user.name "作者姓名"
 git config --global user.email "qqandmx@163.com"
 
 # 添加远程仓库
-git remote add origin https://github.com/你的用户名/blog.git
+git remote add origin https://github.com/gemozhizhi/blog.git
 
 # 推送
 git push -u origin main
@@ -131,18 +131,33 @@ Gitee 国内访问无障碍，EdgeOne Pages 也原生支持 Gitee 仓库。
 2. 建同名公开仓库 `blog`
 3. 推送：
    ```bash
-   git remote add gitee https://gitee.com/你的用户名/blog.git
+   git remote add gitee https://gitee.com/gemozhizhi/blog.git
    git push -u gitee main
    ```
 4. EdgeOne Pages 连接时选 Gitee
 
 **办法 2 · 配置代理**
 
-给 git 单独设置代理（假设本地代理端口 7890）：
+⚠️ **关键点：git 不读 macOS 的系统代理设置。** 即使浏览器能打开 GitHub，命令行 git 照样超时，表现就是终端里光标一直闪、没有任何输出。
+
+必须手动告诉 git 代理地址。先查端口：
+
 ```bash
-git config --global http.proxy http://127.0.0.1:7890
-git config --global https.proxy http://127.0.0.1:7890
+scutil --proxy | grep -E "HTTPPort|HTTPSPort"
 ```
+
+假设是 7897（按实际改）：
+```bash
+git config --global http.proxy http://127.0.0.1:7897
+git config --global https.proxy http://127.0.0.1:7897
+```
+
+验证：
+```bash
+git ls-remote --heads origin
+```
+有输出或静默退出码 0，说明通了。
+
 用完记得清掉：
 ```bash
 git config --global --unset http.proxy
