@@ -1,9 +1,8 @@
 /**
  * 站点信息集中配置 —— 需要改名 / 换域名时，只改这一个文件即可
  *
- * 改动后记得：
- *   1. 重新构建（npm run docs:build）
- *   2. 全局搜索旧名字确认没有遗漏（尤其是 pages/index.md 的 frontmatter）
+ * ⚠️ 改完必须重新构建，否则 sitemap / RSS / 分享卡片里的地址不会更新：
+ *    npm run docs:build && git add . && git commit -m "update site config" && git push
  */
 export const siteConfig = {
   // ===== 基本信息 =====
@@ -13,7 +12,8 @@ export const siteConfig = {
   author: '博主占位名',
 
   // ===== 域名 =====
-  // 上线后拿到二级域名就把这行改成真实地址，RSS、canonical、sitemap 都会自动跟着变
+  // 上线后拿到真实域名就改这一行，RSS、canonical、sitemap、OG 卡片全部自动跟随
+  // 注意：末尾不要加斜杠
   url: 'https://example.pages.dev',
 
   // ===== 社交链接（填了才会显示在首页和侧边栏）=====
