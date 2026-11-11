@@ -1,0 +1,16 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "格模致知 · 个人技术博客 · VitePress + Cloudflare Pages",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "NODE_OPTIONS= vitepress dev docs",
+    "docs:build": "NODE_OPTIONS= vitepress build docs",
+    "docs:preview": "NODE_OPTIONS= vitepress preview docs"
+  },
+  "dependencies": {
+    "vitepress": "1.6.4",
+    "vitepress-plugin-rss": "0.4.6"
+  }
+}

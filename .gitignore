@@ -1,0 +1,33 @@
+# 依赖
+node_modules/
+
+# 构建产物
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+dist/
+dist-build/
+
+# 本地缓存
+.npm-cache/
+
+# 截图与临时文件
+*.png
+.screenshot.mjs
+
+# 环境变量（域名、密钥等）
+.env
+.env.local
+
+# 编辑器
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 日志
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 旧版本残留目录
+node_modules_old_*/
