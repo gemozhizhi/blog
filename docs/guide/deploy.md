@@ -27,14 +27,20 @@ git push -u origin main
 
 | 配置项 | 值 |
 |---|---|
-| 框架预设 | None |
+| 框架预设 | **None**（若默认是 Vite，务必改成 None，否则会覆盖你的构建命令） |
 | 构建命令 | `npm run docs:build` |
 | 构建输出目录 | `docs/.vitepress/dist` |
+| Root directory | 留空（默认即仓库根目录） |
 | Node 版本 | 环境变量加 `NODE_VERSION` = `22` |
 
-5. 点 **部署**
+> ⚠️ **别点「Need to use the legacy Pages workflow? Continue to Pages」**
+> 那是旧的 Pages 流程入口，新流程就停在当前表单页，按 Next 继续即可。
 
-几分钟后拿到 `https://blog.xxx.pages.dev`，先用这个地址验证站点正常。
+> ⚠️ **环境变量容易漏**。不设 `NODE_VERSION=22` 的话，Cloudflare 会用自带的默认 Node 版本，可能低于 22 导致构建失败。
+
+5. 点 **Save and Deploy**
+
+构建 1-3 分钟，日志依次显示 Cloning → Installing dependencies → Building application → Deploying。全绿就成功了，会给出 `blog.gemozhizhi.pages.dev` 地址。
 
 > ⚠️ **授权时选「Only select repositories」，只勾 `blog`**
 >
