@@ -12,9 +12,9 @@ export const siteConfig = {
   author: '博主占位名',
 
   // ===== 域名 =====
-  // 上线后拿到真实域名就改这一行，RSS、canonical、sitemap、OG 卡片全部自动跟随
-  // 注意：末尾不要加斜杠
-  url: 'https://example.pages.dev',
+  // 真实域名，末尾不要加斜杠
+  // 改完记得重新构建：npm run docs:build && git add . && git commit -m "update url" && git push
+  url: 'https://gemozhizhi.com',
 
   // ===== 社交链接（填了才会显示在首页和侧边栏）=====
   // 换成你老公的真实地址

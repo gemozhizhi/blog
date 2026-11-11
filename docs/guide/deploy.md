@@ -40,25 +40,25 @@ git push -u origin main
 
 **第一步 · 在 Cloudflare 取目标地址**
 
-Pages 项目 → **Custom domains** → **Add a domain** → 填入你的域名（比如 `example.com`）。
+Pages 项目 → **Custom domains** → **Add a domain** → 填入 `gemozhizhi.com`。
 
 Cloudflare 会校验域名归属，给出两种验证方式：
 - **TXT 记录验证**（推荐）：在阿里云加一条 `_cf-custom-hostname` 的 TXT 记录
-- CNAME 记录：把 `example.com` CNAME 到 `blog.xxx.pages.dev`
+- CNAME 记录：把 `gemozhizhi.com` CNAME 到 `blog.xxx.pages.dev`
 
 按提示操作即可。
 
 **第二步 · 在阿里云加解析**
 
-阿里云控制台 → **域名** → 找到你的域名 → **解析设置** → **添加记录**：
+阿里云控制台 → **域名** → 找到 `gemozhizhi.com` → **解析设置** → **添加记录**：
 
 | 类型 | 主机记录 | 记录值 | TTL |
 |---|---|---|---|
 | CNAME | `@`（或 `blog`） | `blog.xxx.pages.dev` | 10 分钟 |
 
 > 💡 **用子域名还是根域名？**
-> - 想要 `example.com`（根域名）：主机记录填 `@`
-> - 想要 `blog.example.com`（子域名）：主机记录填 `blog`，**推荐这个**，不影响以后邮箱等其他用途
+> - 想要 `gemozhizhi.com`（根域名）：主机记录填 `@`
+> - 想要 `blog.gemozhizhi.com`（子域名）：主机记录填 `blog`，**推荐这个**，不影响以后邮箱等其他用途
 
 **第三步 · 等待生效**
 
@@ -66,7 +66,7 @@ Cloudflare 会校验域名归属，给出两种验证方式：
 
 验证：
 ```bash
-curl -I https://你的域名
+curl -I https://gemozhizhi.com
 ```
 
 看到 `200` 或 `301` 就通了。
@@ -76,7 +76,7 @@ curl -I https://你的域名
 拿到真实域名后，编辑 `docs/.vitepress/site.config.js`：
 
 ```js
-url: 'https://你的域名',   // 末尾不要加斜杠
+url: 'https://gemozhizhi.com',   // 末尾不要加斜杠
 ```
 
 然后：

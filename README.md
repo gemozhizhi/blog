@@ -94,7 +94,7 @@ git push -u origin main
 
 ### 3. 绑定域名（域名在阿里云）
 
-**Cloudflare 侧**：Pages 项目 → **Custom domains** → **Add a domain** → 填域名，按提示做 TXT 归属验证。
+**Cloudflare 侧**：Pages 项目 → **Custom domains** → **Add a domain** → 填 `gemozhizhi.com`，按提示做 TXT 归属验证。
 
 **阿里云侧**：控制台 → 域名 → 解析设置 → 添加记录：
 
@@ -102,7 +102,7 @@ git push -u origin main
 |---|---|---|---|
 | CNAME | `blog` | `blog.xxx.pages.dev` | 10 分钟 |
 
-> 用子域名 `blog.xxx.com` 比根域名更灵活，不影响以后配邮箱。
+> 用子域名 `blog.gemozhizhi.com` 比根域名更灵活，不影响以后配邮箱。
 > 证书自动签发，10 分钟左右生效。
 
 ### 4. ⚠️ 别忘了改 url 并重新构建
@@ -110,7 +110,7 @@ git push -u origin main
 编辑 `docs/.vitepress/site.config.js`：
 
 ```js
-url: 'https://blog.你的域名',   // 末尾不要加斜杠
+url: 'https://gemozhizhi.com',   // 末尾不要加斜杠
 ```
 
 然后重新构建推送：
