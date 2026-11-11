@@ -17,9 +17,9 @@ export const siteConfig = {
   url: 'https://gemozhizhi.com',
 
   // ===== 社交链接（填了才会显示在首页和侧边栏）=====
-  // 换成你老公的真实地址
+  // GitHub 已确定；知乎和掘金等注册好后再补
   socialLinks: [
-    { icon: 'github', link: 'https://github.com/yourname' },
+    { icon: 'github', link: 'https://github.com/gemozhizhi' },
     { icon: 'zhihu', link: 'https://www.zhihu.com/people/yourname' },
     { icon: 'juejin', link: 'https://juejin.cn/user/yourid' },
   ],

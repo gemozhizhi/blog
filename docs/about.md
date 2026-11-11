@@ -24,6 +24,10 @@ title: 关于
 <table class="social-table">
   <tbody>
     <tr>
+      <th>GitHub</th>
+      <td><a href="https://github.com/gemozhizhi">github.com/gemozhizhi</a></td>
+    </tr>
+    <tr>
       <th>知乎</th>
       <td><a href="https://www.zhihu.com/people/yourname">知乎主页</a></td>
     </tr>
@@ -34,10 +38,6 @@ title: 关于
     <tr>
       <th>CSDN</th>
       <td><a href="https://blog.csdn.net/yourname">CSDN 博客</a></td>
-    </tr>
-    <tr>
-      <th>GitHub</th>
-      <td><a href="https://github.com/yourname">GitHub</a></td>
     </tr>
   </tbody>
 </table>
