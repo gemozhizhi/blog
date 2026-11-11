@@ -50,6 +50,7 @@ export default defineConfig({
           items: [
             { text: '写作指南', link: '/guide/writing' },
             { text: '发布流程', link: '/guide/deploy' },
+            { text: '注册 GitHub', link: '/guide/github-signup' },
           ],
         },
       ],
