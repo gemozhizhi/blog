@@ -20,7 +20,7 @@ git push -u origin main
 
 ### 3. 连到 Cloudflare Pages
 
-1. 登录 [dash.cloudflare.com](https://dash.cloudflare.com)
+1. 登录 [dash.cloudflare.com](https://dash.cloudflare.com) —— 注意是 **dash.cloudflare.com**，不是 github.com/cloudflare（那是 GitHub 上的开源组织主页，不是控制台）
 2. 左侧 **Workers 和 Pages** → **创建** → **Pages** → **连接 Git**
 3. 选 GitHub，授权，选择 `blog` 仓库
 4. 填写构建设置：
@@ -35,6 +35,10 @@ git push -u origin main
 5. 点 **部署**
 
 几分钟后拿到 `https://blog.xxx.pages.dev`，先用这个地址验证站点正常。
+
+> ⚠️ **授权时选「Only select repositories」，只勾 `blog`**
+>
+> 别选「All repositories」—— 那等于把整个 GitHub 账号（包括所有私有仓库）的访问权交给 Cloudflare。只需要这一个公开博客仓库的读权限就够。
 
 ### 4. 绑定自己的域名（阿里云）
 
