@@ -18,29 +18,52 @@ git branch -M main
 git push -u origin main
 ```
 
-### 3. 连到 Cloudflare Pages
+### 3. 连到 Cloudflare（Workers Static Assets 流程）
 
 1. 登录 [dash.cloudflare.com](https://dash.cloudflare.com) —— 注意是 **dash.cloudflare.com**，不是 github.com/cloudflare（那是 GitHub 上的开源组织主页，不是控制台）
-2. 左侧 **Workers 和 Pages** → **创建** → **Pages** → **连接 Git**
+2. 左侧 **Workers 和 Pages** → **创建** → **连接 Git**
 3. 选 GitHub，授权，选择 `blog` 仓库
-4. 填写构建设置：
+4. 在 **Create and deploy** 表单里填：
 
-| 配置项 | 值 |
+| 字段 | 值 |
 |---|---|
-| 框架预设 | **None**（若默认是 Vite，务必改成 None，否则会覆盖你的构建命令） |
-| 构建命令 | `npm run docs:build` |
-| 构建输出目录 | `docs/.vitepress/dist` |
-| Root directory | 留空（默认即仓库根目录） |
-| Node 版本 | 环境变量加 `NODE_VERSION` = `22` |
+| Project name | `blog` ← **必须与 wrangler.jsonc 里的 `name` 一致** |
+| Build command | `npm run docs:build` |
+| Deploy command | `npx wrangler deploy` ← 保持默认即可 |
+| Preview command | `npx wrangler preview` ← 保持默认 |
+| Enable Preview builds | 保持开启 |
+| Protect with Cloudflare Access | 保持关闭 |
+
+5. 点 **Advanced settings**，确认 **Build output directory** 为 `docs/.vitepress/dist`，Root directory 留空
+6. 点 **Deploy**
+
+> ⚠️ **Project name 必须和 `wrangler.jsonc` 里的 `name` 字段完全一致**，否则构建会失败（报 name mismatch）。当前配置是 `blog`。
 
 > ⚠️ **别点「Need to use the legacy Pages workflow? Continue to Pages」**
-> 那是旧的 Pages 流程入口，新流程就停在当前表单页，按 Next 继续即可。
+> 那是旧的 Pages 流程入口，新流程就停在当前表单页。
 
-> ⚠️ **环境变量容易漏**。不设 `NODE_VERSION=22` 的话，Cloudflare 会用自带的默认 Node 版本，可能低于 22 导致构建失败。
+构建 1-3 分钟，成功后得到 `https://blog.gemozhizhi.workers.dev`。
 
-5. 点 **Save and Deploy**
+#### 配置文件说明
 
-构建 1-3 分钟，日志依次显示 Cloning → Installing dependencies → Building application → Deploying。全绿就成功了，会给出 `blog.gemozhizhi.pages.dev` 地址。
+项目根目录有两个配置文件支撑这个流程：
+
+**`wrangler.jsonc`** —— 告诉 Wrangler 静态资源在哪、404 怎么处理：
+```jsonc
+{
+  "name": "blog",
+  "compatibility_date": "2026-11-05",
+  "assets": {
+    "directory": "./docs/.vitepress/dist",
+    "not_found_handling": "404-page"
+  }
+}
+```
+
+> `not_found_handling: "404-page"` 让 Workers 用 VitePress 生成的 `404.html` 处理未匹配路径。这行容易漏，漏了访问不存在的地址会返回 Cloudflare 默认错误页。
+
+**`.node-version`** —— 锁定 Node 版本为 22，避免 Cloudflare 默认版本过低导致构建失败。
+
 
 > ⚠️ **授权时选「Only select repositories」，只勾 `blog`**
 >
