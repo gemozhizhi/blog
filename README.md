@@ -65,9 +65,17 @@ date: 2026-11-11
 
 ## 部署到 Cloudflare Pages
 
-### 1. 建 GitHub 仓库
+> 完整图文步骤见 `docs/guide/deploy.md`（站点上「开始使用 → 发布流程」）
+
+### 1. 建 GitHub 仓库并推送
 
 仓库名建议 `blog`，设为 Public，**不要**初始化 README。
+
+```bash
+git remote add origin https://github.com/你的用户名/blog.git
+git branch -M main
+git push -u origin main
+```
 
 ### 2. 连接 Cloudflare Pages
 
@@ -84,23 +92,42 @@ date: 2026-11-11
 
 4. 部署完成后会拿到 `https://blog.xxx.pages.dev`
 
-### 3. 绑定域名
+### 3. 绑定域名（域名在阿里云）
 
-**Pages 项目 → Custom domains → Add a domain**，填入域名。
+**Cloudflare 侧**：Pages 项目 → **Custom domains** → **Add a domain** → 填域名，按提示做 TXT 归属验证。
 
-然后在 **Cloudflare DNS** 添加记录：
+**阿里云侧**：控制台 → 域名 → 解析设置 → 添加记录：
 
-| 类型 | 名称 | 内容 | 代理 |
+| 类型 | 主机记录 | 记录值 | TTL |
 |---|---|---|---|
-| CNAME | `blog` | `blog.xxx.pages.dev` | DNS only（灰色云朵）|
+| CNAME | `blog` | `blog.xxx.pages.dev` | 10 分钟 |
 
-> 域名 DNS 若不在 Cloudflare，把这条 CNAME 加到原注册商面板即可。
+> 用子域名 `blog.xxx.com` 比根域名更灵活，不影响以后配邮箱。
+> 证书自动签发，10 分钟左右生效。
 
-HTTPS 证书自动签发，约几分钟生效。
+### 4. ⚠️ 别忘了改 url 并重新构建
 
-### 4. 同步修改 site.config.js
+编辑 `docs/.vitepress/site.config.js`：
 
-把 `url` 改成真实域名，重新构建推送。否则 sitemap 和 RSS 里的地址还是旧的。
+```js
+url: 'https://blog.你的域名',   // 末尾不要加斜杠
+```
+
+然后重新构建推送：
+
+```bash
+npm run docs:build
+git add . && git commit -m "配置真实域名" && git push
+```
+
+**为什么必须做**：sitemap.xml 和 feed.rss 的地址由此生成。不改的话搜索引擎收录到的还是 `example.pages.dev`，社交平台分享卡片也会指向错误地址。
+
+### 5. 提交搜索收录
+
+- 百度搜索资源平台（ziyuan.baidu.com）：验证站点 → 提交 sitemap
+- Google Search Console：同样提交一次
+
+3-5 天内开始有收录。
 
 ## 日常发布
 
